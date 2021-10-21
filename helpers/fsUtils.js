@@ -1,6 +1,6 @@
 const fs = require('fs');
 const util = require('util');
-
+const notesdb = require('../db/db.json');
 // Promise version of fs.readFile
 const readFromFile = util.promisify(fs.readFile);
 /**
@@ -9,11 +9,18 @@ const readFromFile = util.promisify(fs.readFile);
  *  @param {object} content The content you want to write to the file.
  *  @returns {void} Nothing
  */
-const writeToFile = (destination, content) =>
+const writeToFile = (destination, content) =>{
+console.log('writing',content)
+  fs.writeFile(destination, JSON.stringify(content, null, 4), (err) =>{
+    // err ? console.error(err) : console.info(`\nData written to ${destination}` )
+    })
+    fs.readFile('../db/db.json',(err, data)=>{
+      console.log('testing')
+      console.log(data)
+    }) 
+  }
 
-  fs.writeFile(destination, JSON.stringify(content, null, 4), (err) =>
-    err ? console.error(err) : console.info(`\nData written to ${destination}`)
-  );
+  ;
 /**
  *  Function to read data from a given a file and append some content
  *  @param {object} content The content you want to append to the file.
