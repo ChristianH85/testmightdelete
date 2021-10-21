@@ -9,9 +9,9 @@ const readFromFile = util.promisify(fs.readFile);
  *  @param {object} content The content you want to write to the file.
  *  @returns {void} Nothing
  */
-const writeToFile = (destination, content) =>{
+const writeToFile = async(destination, content) =>{
 console.log('writing',content)
-  fs.writeFile(destination, JSON.stringify(content, null, 4), (err) =>{
+  await fs.writeFileSync(destination, JSON.stringify(content, null, 4), (err) =>{
     // err ? console.error(err) : console.info(`\nData written to ${destination}` )
     })
     fs.readFile('../db/db.json',(err, data)=>{
