@@ -58,7 +58,7 @@ app.delete('/api/notes/:id', (req, res) => {
             console.log(removed);
             utilfs.writeToFile('./db/db.json',notesdb);
             utilfs.readAndAppend(removed, './db/removed.json');
-            return res.json(notesdb);
+             res.json(notesdb);
     }
 }
 // Return a message if the term doesn't exist in our DB
@@ -80,6 +80,7 @@ app.post('/api/notes', (req, res) => {
         data: newNote,
         
       };
+      console.log("I posted today")
       console.log(response);
       readAndAppend(newNote, './db/db.json');
     res.json(`Tip added successfully 🚀`);
