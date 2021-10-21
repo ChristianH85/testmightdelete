@@ -180,6 +180,9 @@ const readAndAppend = (content, file) => {
       } else {
         const parsedData = JSON.parse(data);
         parsedData.push(content);
+        console.log('read/append')
+        console.log(content)
+        console.log(parsedData)
         utilfs.writeToFile(file, parsedData);
       }
     });
